@@ -1,8 +1,8 @@
 {
     "host" : "192.168.0.44",
-    "port" : 8080,
+    "port" : 3030,
     "db": {
-        "uri": "mongodb://127.0.0.1:27017/mydb",
+        "uri": "mongodb://127.0.0.1:27017/nanishop",
             "options": {
                 "server": {
                      "socketOptions": {
