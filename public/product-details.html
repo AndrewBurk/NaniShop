@@ -1,11 +1,10 @@
-
 <div class="container">
 	<div class="row">
 		<div class="col-sm-9 padding-right">
 			<div class="product-details"><!--product-details-->
 				<div class="col-sm-5">
 					<div class="view-product">
-						<img nc-src={{todo.img}} alt="" />
+						<img ng-src={{items.img}} alt="" />
 						<h3>ZOOM</h3>
 					</div>
 					<div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -42,23 +41,24 @@
 				</div>
 				<div class="col-sm-7">
 					<div class="product-information"><!--/product-information-->
-						<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-						<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-						<p>Web ID: 1089772</p>
-						<img src="images/product-details/rating.png" alt="" />
+						<!--<img src="images/product-details/new.jpg" class="newarrival" alt="" />-->
+						<h2>{{items.name}}</h2>
+						<!--<p>Web ID: 1089772</p>
+						<img src="images/product-details/rating.png" alt="" />-->
 								<span>
-									<span>US $59</span>
-									<label>Quantity:</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
+									<span>{{items.price}} грн.</span>
+									<label>Количество:</label>
+									<input type="text" value="1" />
+									<button type="button" class="btn btn-fefault cart" ng-click="toCart(items)">
 										<i class="fa fa-shopping-cart"></i>
-										Add to cart
+										В корзину
 									</button>
 								</span>
-						<p><b>Availability:</b> In Stock</p>
-						<p><b>Condition:</b> New</p>
-						<p><b>Brand:</b> E-SHOPPER</p>
-						<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+						<p><b>Наличие:</b> Есть</p>
+						<p>{{items.description}}</p>
+						<!--<p><b>Condition:</b> New</p>
+						<p><b>Brand:</b> E-SHOPPER</p>-->
+						<!--<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->
 					</div><!--/product-information-->
 				</div>
 			</div><!--/product-details-->
@@ -242,7 +242,7 @@
 											<input type="email" placeholder="Email Address"/>
 										</span>
 								<textarea name="" ></textarea>
-								<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
+								<!--<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />-->
 								<button type="button" class="btn btn-default pull-right">
 									Submit
 								</button>

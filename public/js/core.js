@@ -1,15 +1,21 @@
 angular.module('NaniShop',['ngRoute','ItemCtrl','ContentServices'])
-    .config(['$routeProvider', function($routeProvider) {
+    .config(['$routeProvider','$locationProvider', function($routeProvider,$locationProvider) {
         $routeProvider.
             when('/',{
                 templateUrl: '/itemslist.html',
                 controller: 'ItemListCtrl'
             }).
-            when('/items/:itemname', {
+            when('/items/:item_id', {
                 templateUrl:'/product-details.html',
                 controller: 'ItemDetailCtrl'
             }).
+            when('/cart',{
+                templateUrl: '/cart.html',
+                controller: 'CartCtrl'
+            }).
             otherwise({
-                redirectTo: '/index.html'
+                redirectTo: '/'
             });
+        $locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('!');
     }]);
