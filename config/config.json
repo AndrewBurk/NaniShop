@@ -1,6 +1,6 @@
 {
     "env" : "dev",
-    "host" : "127.0.0.1",
+    "host" : "192.168.0.44",
     "port" : 3030,
     "db": {
         "uri": "mongodb://127.0.0.1:27017/nanishop",
@@ -11,5 +11,14 @@
                     }
                 }
             }
+    },
+    "session": {
+        "secret": "sdfi235klf6723#$)@kjbdw",
+        "cookie": {
+            "secure": false,
+            "path": "/",
+            "httpOnly": true,
+            "maxAge": 172800000
+        }
     }
 }

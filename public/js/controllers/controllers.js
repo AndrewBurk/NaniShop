@@ -13,14 +13,17 @@ ItemCtrl.controller('MainCtrl',['$scope','Cart',function($scope,Cart){
 
     Cart.getCart().
         success(function(data){
-            $scope.User.cart = ArrToMap(data);
+            //$scope.User.cart = ArrToMap(data);
+            $scope.User.cart = data;
+            console.log(data);
             $scope.User.totalCount = SumItemsInCart(data);
         });
 
     $scope.toCart = function(item_id){
         Cart.toCart(item_id)
             .success(function(data){
-                $scope.User.cart = ArrToMap(data);
+                //$scope.User.cart = ArrToMap(data);
+                $scope.User.cart = data;
                 $scope.User.totalCount = SumItemsInCart(data);
             });
     };
@@ -64,13 +67,13 @@ var getItem_ids = function(arr){
 }
 
 var SumItemsInCart = function(arr){
-    for(var i= 0, sum = 0; i < arr.length; sum += arr[i++].count);
-    return sum;
-};
-
-var ArrToMap = function(arr){
-    for(var i = 0, map = []; i < arr.length;i++){
-        map[arr[i].item_id]=arr[i].count;
+    //for(var i= 0, sum = 0; i < arr.length; sum += arr[i++].count);
+    var sum = 0;
+    console.log('Arr: '+JSON.stringify(arr));
+    for(var key in arr){
+        console.log('Key:'+key);
+        sum += arr[key];
     }
-    return map;
+    console.log(sum);
+    return sum;
 };

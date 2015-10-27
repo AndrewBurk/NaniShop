@@ -22,7 +22,7 @@ ContentServices.factory('Cart',['$http',function($http){
         },
         toCart : function(item){
             var c = { "item_id" : item,
-                "count": 0};
+                "count": 1};
             return $http.post('api/cart',c);
         }
     };

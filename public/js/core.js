@@ -13,6 +13,9 @@ angular.module('NaniShop',['ngRoute','ItemCtrl','ContentServices'])
                 templateUrl: '/cart.html',
                 controller: 'CartCtrl'
             }).
+            when('/login',{
+                templateUrl: '/login.html'
+            }).
             otherwise({
                 redirectTo: '/'
             });
