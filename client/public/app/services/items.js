@@ -18,12 +18,13 @@ ContentServices.factory('Items',['$http',function($http){
 ContentServices.factory('Cart',['$http',function($http){
     return {
         getCart : function(){
-            return $http.get('api/cart');
+            return $http.get('/api/cart');
         },
         toCart : function(item){
             var c = { "item_id" : item,
                 "count": 1};
-            return $http.post('api/cart',c);
+            return $http.post('/api/cart',c);
         }
     };
 }]);
+

@@ -4,18 +4,22 @@ ItemCtrl.controller('MainCtrl',['$scope','Cart',function($scope,Cart){
 
     $scope.User = {
         cart: [],
-        totalCount: 0
+        totalCount: String,
+        username: ''
     };
 
     $scope.User.getCount = function(item_id){
       return $scope.User.cart[item_id];
     };
 
+    $scope.isLoggedIn = function(){
+        return $scope.User.username === '' ? false: true;
+    }
+
     Cart.getCart().
         success(function(data){
             //$scope.User.cart = ArrToMap(data);
             $scope.User.cart = data;
-            console.log(data);
             $scope.User.totalCount = SumItemsInCart(data);
         });
 
@@ -47,6 +51,7 @@ ItemCtrl.controller('MainCtrl',['$scope','Cart',function($scope,Cart){
 .controller('CartCtrl', ['$scope','$http','Items',function($scope, $http, Items) {
         Items.getItemsFromCart(getItem_ids($scope.User.cart))
             .success(function(data){
+                console.log('RERERE'+data);
                 //var i = 0;
                 $scope.cart=[];
                 for(var i= 0;i<data.length; i++){
@@ -57,6 +62,7 @@ ItemCtrl.controller('MainCtrl',['$scope','Cart',function($scope,Cart){
             });
 
 }]);
+
 
 var getItem_ids = function(arr){
     var keys = [];
@@ -69,11 +75,8 @@ var getItem_ids = function(arr){
 var SumItemsInCart = function(arr){
     //for(var i= 0, sum = 0; i < arr.length; sum += arr[i++].count);
     var sum = 0;
-    console.log('Arr: '+JSON.stringify(arr));
     for(var key in arr){
-        console.log('Key:'+key);
         sum += arr[key];
     }
-    console.log(sum);
     return sum;
 };
