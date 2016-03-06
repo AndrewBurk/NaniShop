@@ -16,7 +16,11 @@ var item = new mongoose.Schema({
 var user = new mongoose.Schema({
 		username: String,
 		password: String,
-		email: String
+		email: String,
+		role: {
+			type: String,
+			default: 'user'
+		}
 }
 	,{ autoIndex: __autoIndex });
 

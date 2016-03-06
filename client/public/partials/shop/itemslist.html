@@ -1,0 +1,20 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 padding-right">
+                <div class="features_items" >
+                    <h2 class="title text-center">Косметика</h2>
+                    <div class="col-sm-4" ng-repeat="item in items | orderBy:'-name':true">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <p class="productinfo text-center">
+                                    <a href="/items/{{item._id}}"> <img ng-src="{{item.img}}" alt="" /> </a>
+                                <h2>{{ item.price }} грн.</h2>
+                                <a href="/items/{{item._id}}"> <p>{{ item.name }}</p></a>
+                                <p class="btn btn-default add-to-cart" ng-click="toCart(item._id,1)"><i class="fa fa-shopping-cart"></i>В корзину</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

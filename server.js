@@ -1,16 +1,17 @@
 // set up ======================================================================
-var express        = require('express');
-var path           = require('path');
-var app            = express();
-var mongoose       = require('mongoose');
-var session        = require('express-session');
-var MongoStore     = require('connect-mongo')(session);
-var config         = require('./server/config');
-var log            = require('./server/lib/log').Log(module);
-var bodyParser     = require('body-parser');
-var methodOverride = require('method-override');
-var passport       = require('passport');
-var localStrategy  = require('passport-local').Strategy;
+var express        = require('express'),
+    path           = require('path'),
+    app            = express(),
+    mongoose       = require('mongoose'),
+    session        = require('express-session'),
+    MongoStore     = require('connect-mongo')(session),
+    config         = require('./server/config'),
+    log            = require('./server/lib/log').Log(module),
+    bodyParser     = require('body-parser'),
+    methodOverride = require('method-override'),
+    passport       = require('passport'),
+    localStrategy  = require('passport-local').Strategy,
+    checkAuth      = require('./server/middleware/checkAuth');
 
 if (config.get('env') == 'dev') {
   app.use(require('morgan')(config.get('env'),"combined", { "stream": require('./server/lib/log').stream }));
@@ -26,7 +27,7 @@ mongoose.connect(config.get('db:uri'), config.get('db:options'),function(err, db
   else log.info('Connected to the db - ' + config.get('db:uri'));
 });
 
-app.dirpath=path.join(__dirname + '/client/admin');
+app.dirpath=path.join(__dirname + '/client/public');
 
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
@@ -45,21 +46,25 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.join(__dirname + '/client/admin')));
+app.use(express.static(path.join(__dirname + '/client/public')));
 var User = require('./server/app/models/DBModel').User;
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 // routes ======================================================================
 
 require('./server/app/routes/main')(app);
 
 app.use('/user',require('./server/app/routes/UserAuth'));
-
+app.get('/adminP',require('./server/app/routes/admin'));
+//app.get('/admin/*',checkAuth,function(req,res){
+//  res.sendFile(app.dirpath+'/admin/index.html')
+//});
 
 app.get('/*',function(req,res){
-  res.sendFile(app.dirpath+'/app/index.html')
+  res.sendFile(app.dirpath+'/partials/index.html')
 });
 
 var HttpError = require('./server/lib/error').HttpError;

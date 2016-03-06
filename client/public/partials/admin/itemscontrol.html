@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Продукты
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-table"></i> Tables
+            </li>
+        </ol>
+    <!--</div>-->
+    <!--<div class="col-lg-6">-->
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <h3 class="panel-title">Список Продуктов</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                    <tr>
+                        <th style="width:10%">Название</th>
+                        <th style="width:20%">Категория</th>
+                        <th style="width:50%">Описание</th>
+                        <th style="width:5%">Цена</th>
+                        <!--<th>Фото</th>-->
+                        <th style="width:15%">Изменить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in items | orderBy:'-name':true">
+                        <td><span editable-text="item.name" e-form="rowform" e-name="name">{{item.name}}</span></td>
+                        <td>asdas</td>
+                        <td><span editable-text="item.description" e-form="rowform">{{item.description}}</span></td>
+                        <td><span editable-text="item.price" e-form="rowform">{{item.price}}</span></td>
+                        <td><span editable-textarea="item.img" e-form="rowform" >{{item.img}}</span></td>
+                        <td style="white-space: nowrap">
+                            <!-- form -->
+                            <form editable-form name="rowform" onbeforesave="saveItem(item, item._id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == item">
+                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success">
+                                    save
+                                </button>
+                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                                    cancel
+                                </button>
+                            </form>
+                            <div class="buttons" ng-show="!rowform.$visible">
+                                <button class="btn btn-warning" ng-click="rowform.$show()">edit</button>
+                                <button class="btn btn-danger" ng-click="removeItem($index)">del</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <button class="btn btn-success" ng-click="addItem()">Add Item</button>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</div>
+

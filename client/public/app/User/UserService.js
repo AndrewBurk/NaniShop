@@ -7,23 +7,29 @@ var UserServices = angular.module('UserServices',[]);
 UserServices.factory('UserServices', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
     // create user variable
     var user = null;
+    var userrole = 'user';
 
     // return available functions for use in controllers
     return ({
         isLoggedIn: isLoggedIn,
+        getUserRole: getUserRole,
         getUserStatus: getUserStatus,
         login: login,
         logout: logout,
-        register: register,
-        getUserName: getUserName
+        register: register
     });
 
     function isLoggedIn() {
-        if(user) {
-            return true;
-        } else {
-            return false;
-        }
+        //if(user) {
+        //    return true;
+        //} else {
+        //    return false;
+        //}
+        return (user === true) ? true: false;
+    }
+
+    function getUserRole(){
+        return userrole;
     }
 
     function getUserStatus() {
@@ -39,17 +45,21 @@ UserServices.factory('UserServices', ['$q', '$timeout', '$http', function ($q, $
         $http.post('/user/login', {username: username, password: password})
             // handle success
             .success(function (data, status) {
-                if(status === 200 && data.status){
+                if(status === 200 && data.username){
                     user = true;
+                    console.log('IN 200 '+data.userrole);
+                    userrole = data.userrole;
                     deferred.resolve();
                 } else {
                     user = false;
+                    userrole = 'user';
                     deferred.reject();
                 }
             })
             // handle error
             .error(function (data) {
                 user = false;
+                userrole = 'user';
                 deferred.reject();
             });
 
@@ -75,7 +85,7 @@ UserServices.factory('UserServices', ['$q', '$timeout', '$http', function ($q, $
                 user = false;
                 deferred.reject();
             });
-
+        userrole = 'user';
         // return promise object
         return deferred.promise;
 
@@ -100,16 +110,10 @@ UserServices.factory('UserServices', ['$q', '$timeout', '$http', function ($q, $
             .error(function (data) {
                 deferred.reject();
             });
-
+        userrole = 'user';
         // return promise object
         return deferred.promise;
 
     }
-
-    function getUserName(){
-        console.log('Called getUSerName');
-        return userName;
-    }
-
 
 }]);
