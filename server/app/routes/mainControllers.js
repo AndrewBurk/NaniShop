@@ -34,7 +34,6 @@ module.exports.ToCart = function(req,res,next){
 module.exports.GetItems = function(req,res,next){
     Item.find(function(err,items){
         if(err) return next(err);
-        //req.session.user ='OK';
         res.json(items);
     });
 };

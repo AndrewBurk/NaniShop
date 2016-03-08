@@ -4,7 +4,7 @@
 			<div class="product-details"><!--product-details-->
 				<div class="col-sm-5">
 					<div class="view-product">
-						<img ng-src={{items.img}} alt="" />
+						<img ng-src={{product.img}} alt="" />
 						<h3>ZOOM</h3>
 					</div>
 					<div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -45,10 +45,10 @@
 					<div ng-show="InputForm.CountItems.$error.max" class="alert alert-danger">Количество перевышает 99.</div>
 					<div class="product-information"><!--/product-information-->
 						<!--<img src="images/product-details/new.jpg" class="newarrival" alt="" />-->
-						<h2>{{items.name}}</h2>
+						<h2>{{product.name}}</h2>
 						<!--<p>Web ID: 1089772</p>
 						<img src="images/product-details/rating.png" alt="" />-->
-						<span>{{items.price}} грн.</span>
+						<span>{{product.price}} грн.</span>
 						<form name="InputForm">
 							<Label>
 								Количество:
@@ -56,12 +56,12 @@
 							</label>
 							<!--button type="button" class="btn btn-fefault cart" ng-click="toCart(items._id,ItemCount)">
 								<i class="fa fa-shopping-cart"></i>В корзину</button-->
-							<input type="submit" class="btn btn-fefault cart" value="В корзину"  ng-click="toCart(items._id,ItemCount)" ng-disabled="InputForm.$invalid">
+							<input type="submit" class="btn btn-fefault cart" value="В корзину"  ng-click="toCart(product._id,ItemCount)" ng-disabled="InputForm.$invalid">
 						</form>
 
 						</span>
 						<p><b>Наличие:</b> Есть</p>
-						<p>{{items.description}}</p>
+						<p>{{product.description}}</p>
 						<!--<p><b>Condition:</b> New</p>
 						<p><b>Brand:</b> E-SHOPPER</p>-->
 						<!--<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>-->

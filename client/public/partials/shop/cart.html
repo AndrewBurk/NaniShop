@@ -18,7 +18,7 @@
 							<td></td>
 						</tr>
 					</thead>
-					<tbody ng-repeat="item in cart | orderBy:'-name':true">
+					<tbody ng-repeat="item in cart.items | orderBy:'-name':true">
 						<tr>
 							<td class="cart_product">
 								<a href=""><img ng-src="" alt=""></a>
@@ -27,22 +27,22 @@
 								<h4><a href="">{{item.name}}</a></h4>
 							</td>
 							<td class="cart_price">
-								<p>{{item.item_detail.price}} грн.</p>
+								<p>{{item.price}} грн.</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" ng-click="toCart(item._id,1)" href=""> + </a>
+									<a class="cart_quantity_up" ng-click="cart.addItem(item._id,item.name,item.price,1)" href=""> + </a>
 									<!--button class="cart_quantity_button" ng-click="toCart(item._id,1)">+</button-->
-									<input class="cart_quantity_input" type="text" name="quantity" value="{{User.cart[item._id]}}" autocomplete="off" size="2">
-									<a class="cart_quantity_down" ng-click="toCart(item._id,-1)" href=""> - </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{item.quantity}}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" ng-click="cart.addItem(item._id,item.name,item.price,-1)" href=""> - </a>
 									<!--button class="cart_quantity_up" ng-click="toCart(item._id,-1)">-</button-->
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">{{User.cart[item._id]*item.item_detail.price}} грн.</p>
+								<p class="cart_total_price">{{cart.getTotalPrice(item._id)}} грн.</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" ng-click="toCart(item._id,-User.cart[item._id]-1)" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" ng-click="cart.addItem(item._id,item.name,item.price,-1*item.quantity)" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 					</tbody>

@@ -33,12 +33,11 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li ng-show="isAdmin()" ><a ui-sref="admin"><i class="fa fa-user"></i> {{User.userrole}}</a></li>
-								<li><a ui-sref="admin"><i class="fa fa-user"></i> admin</a></li>
-								<li ng-show="isLoggedIn()" ><a href="/user"><i class="fa fa-user"></i> {{User.username}}</a></li>
-								<li><a ui-sref=".cart"><i class="fa fa-shopping-cart"></i> Корзина({{User.totalCount}})</a></li>
-								<li ng-hide="isLoggedIn()"><a ui-sref=".login"><i class="fa fa-lock"></i> Вход</a></li>
-								<li ng-show="isLoggedIn()" ng-controller="logoutController"><a href="/" ng-click="logout()"><i class="fa fa-unlock"></i>Выход</a></li>
+								<li><a ui-sref="admin"><i class="fa fa-user"></i> admin_NotWorking</a></li>
+								<li><a href="/user"><i class="fa fa-user"></i>User_NotWorking</a></li>
+								<li><a ui-sref=".cart"><i class="fa fa-shopping-cart"></i> Корзина({{cart.getTotalCount()}})</a></li>
+								<li><a ui-sref=".login"><i class="fa fa-lock"></i> Вход_NotWorking</a></li>
+								<li><a href="/"><i class="fa fa-unlock"></i>Выход_NotWorking</a></li>
 							</ul>
 						</div>
 					</div>
