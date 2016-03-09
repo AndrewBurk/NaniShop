@@ -1,9 +1,15 @@
 var Store = function(items){
-    if(!this instanceof Store){
-        return new Store();
+    var instance;
+    Store = function Store(){
+        return instance;
     }
-    console.log('Created');
-    this.products = [];
+    Store.prototype = this;
+
+    instance = new Store();
+    instance.constructor = Store;
+    instance.products = [];
+    return instance;
+
 };
 
 Store.prototype.loadProducts = function(items){
