@@ -55,8 +55,7 @@ angular.module('NaniShop').run(function(editableOptions) {
 
 naniShop.factory('DataService',['Items',function(Items){
     var naniShopStore = new Store(),
-        naniShopCart = new ShoppingCart('NaniShopCart'),
-        items;
+        naniShopCart = new ShoppingCart('NaniShopCart');
 
     Items.getAllItems()
         .success(function (items) {
